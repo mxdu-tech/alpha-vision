@@ -1,16 +1,12 @@
+import type { TraderProfile } from "@/types";
+
 type Props = {
-    trader: {
-      id: string;
-      traderName: string;
-      traderAddress: string;
-      styleTag: string;
-      winRate: string;
-      avgHoldTime: string;
-      note: string;
-    };
-  };
+  trader: TraderProfile;
+};
+
+
   
-  export default function TraderCard({ trader }: Props) {
+export default function TraderCard({ trader }: Props) {
     return (
       <article className="rounded-2xl border border-neutral-800 bg-neutral-900 p-5 shadow-sm">
         <div className="mb-4 flex items-start justify-between gap-4">
