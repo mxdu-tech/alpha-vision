@@ -1,6 +1,7 @@
 import { activityFeed, traderProfiles } from "@/data/mock";
 import TraderCard from "@/components/TraderCard";
 import ActivityCard from "@/components/ActivityCard";
+import { getSignalStatus } from "@/lib/signal";
 
 export default function Home() {
   const totalTraders = traderProfiles.length;
@@ -14,11 +15,10 @@ export default function Home() {
             AlphaVision
           </p>
           <h1 className="text-4xl font-semibold tracking-tight">
-            Polymarket Smart Money Feed
+            Surface early signals from smart money on Polymarket
           </h1>
           <p className="mt-3 max-w-2xl text-neutral-400">
-            Track selected traders, inspect recent activity, and turn raw
-            market actions into readable signals.
+            Track selected traders, interpret their actions, and understand whether a signal is early, mid, or late.
           </p>
         </header>
 
@@ -73,7 +73,13 @@ export default function Home() {
 
           <div className="space-y-4">
           {activityFeed.map((item) => (
-            <ActivityCard key={item.id} item={item} />
+            <ActivityCard
+              key={item.id}
+              item={{
+                ...item,
+                signalStatus: getSignalStatus(item),
+              }}
+            />
           ))}
           </div>
         </section>
